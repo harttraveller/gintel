@@ -9,7 +9,10 @@ def post_install():
     package_files = Path.home() / ".gintel"
     if not Path(package_files).exists():
         Path(package_files).mkdir()
-        # urlretrieve()
+        urlretrieve(
+            "https://raw.githubusercontent.com/harttraveller/gintel/main/files/tokens.json",
+            package_files / "tokens.json",
+        )
 
 
 class Installation(install):

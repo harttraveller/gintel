@@ -1,32 +1,19 @@
+import atexit
 from pathlib import Path
 from setuptools import setup, find_packages
 from setuptools.command.install import install
 
 
-class DeveloperInstallation(install):
-    def pre(self):
-        pass
-
-    def post(self):
-        pass
-
-    def run(self):
-        self.pre()
-        install.run(self)
-        self.post()
+def post_install():
+    package_files = Path.home() / ".gintel"
+    if not Path(package_files).exists():
+        Path(package_files).mkdir()
 
 
-class UserInstallation(install):
-    def pre(self):
-        pass
-
-    def post(self):
-        pass
-
-    def run(self):
-        self.pre()
-        install.run(self)
-        self.post()
+class Installation(install):
+    def __init__(self, *args, **kwargs):
+        super(Installation, self).__init__(*args, **kwargs)
+        atexit.register(post_install)
 
 
 setup(
@@ -42,7 +29,6 @@ setup(
     install_requires=["click", "requests"],
     entry_points={"console_scripts": ["gintel=gintel.cli:entry"]},
     cmdclass={
-        "develop": DeveloperInstallation,
-        "install": UserInstallation,
+        "install": Installation,
     },
 )

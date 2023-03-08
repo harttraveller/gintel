@@ -1,5 +1,33 @@
-from setuptools import setup, find_packages
 from pathlib import Path
+from setuptools import setup, find_packages
+from setuptools.command.install import install
+
+
+class DeveloperInstallation(install):
+    def pre(self):
+        pass
+
+    def post(self):
+        pass
+
+    def run(self):
+        self.pre()
+        install.run(self)
+        self.post()
+
+
+class UserInstallation(install):
+    def pre(self):
+        pass
+
+    def post(self):
+        pass
+
+    def run(self):
+        self.pre()
+        install.run(self)
+        self.post()
+
 
 setup(
     name="gintel",
@@ -13,4 +41,8 @@ setup(
     include_package_data=True,
     install_requires=["click", "requests"],
     entry_points={"console_scripts": ["gintel=gintel.cli:entry"]},
+    cmdclass={
+        "develop": DeveloperInstallation,
+        "install": UserInstallation,
+    },
 )

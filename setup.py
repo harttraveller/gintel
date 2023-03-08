@@ -2,12 +2,14 @@ import atexit
 from pathlib import Path
 from setuptools import setup, find_packages
 from setuptools.command.install import install
+from urllib.request import urlretrieve
 
 
 def post_install():
     package_files = Path.home() / ".gintel"
     if not Path(package_files).exists():
         Path(package_files).mkdir()
+        # urlretrieve()
 
 
 class Installation(install):

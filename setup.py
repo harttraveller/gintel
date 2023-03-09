@@ -31,7 +31,7 @@ setup(
     long_description_content_type="text/markdown",
     packages=find_packages(),
     include_package_data=True,
-    install_requires=["click", "requests"],
+    install_requires=["click", "requests", "pyeio"],
     entry_points={"console_scripts": ["gintel=gintel.cli:entry"]},
     cmdclass={
         "install": Installation,

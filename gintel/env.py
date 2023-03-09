@@ -4,4 +4,4 @@ from pathlib import Path
 HOME = Path.home()
 FILES = HOME / ".gintel"
 CACHE = FILES / "cache"
-TOKENS = f"{FILES}/tokens.toml"
+TOKENS = f"{FILES}/tokens.json"

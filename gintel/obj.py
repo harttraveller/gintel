@@ -14,6 +14,10 @@ class Position:
     def __post_init__(self):
         pass
 
+    @property
+    def coordinates(self) -> tuple[float]:
+        return (self.lt, self.lg)
+
     def deg2num(lat_deg, lon_deg, zoom):
         lat_rad = math.radians(lat_deg)
         n = 2.0**zoom

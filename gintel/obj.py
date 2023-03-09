@@ -14,7 +14,10 @@ class Position:
 
     @validator("zm")
     def __validate_zm(cls, zm: int) -> int:
-        pass
+        if (zm >= 0) and (zm <= 19):
+            return zm
+        else:
+            raise Exception("Zoom is not within allowed range: [0, 19]")
 
     def __post_init__(self):
         pass

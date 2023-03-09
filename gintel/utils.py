@@ -15,8 +15,13 @@
 # ---
 
 # %%
-from pathlib import Path
+import os
+
 from pyeio import easy
+from typing import Any
+from pathlib import Path
+from rich.console import Console
+
 from gintel.env import FILES
 from gintel.env import TOKENS
 
@@ -68,6 +73,12 @@ class Tokens:
 tokens = Tokens()
 
 # %%
-tokens.tokens
 
-# %%
+
+def vprint(x: Any, verbose: bool = True) -> None:
+    if verbose:
+        Console().print(x)
+
+
+def clear():
+    os.system("cls" if os.name == "nt" else "clear")

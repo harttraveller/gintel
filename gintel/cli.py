@@ -1,4 +1,6 @@
 import click
+import subprocess
+
 from pick import pick
 from gintel.utils import Tokens, vprint, clear
 
@@ -61,11 +63,10 @@ def change():
 
 @tokens.command()
 def copy():
-    # if len(token_cache.defined) == 0:
-    #     vprint("[yellow]No Defined Tokens[/yellow]")
-    # else:
-    #     selection = pick(options=token_cache.defined, title="Select Token")
-    #     vprint(f"New {selection[0].title()} API Token")
-    #     api_token = str(input("❯ "))
-    #     token_cache.update(selection[0], api_token)
-    #     vprint(f"[green]{selection[0].title()} Token Saved[/green]")
+    if len(token_cache.defined) == 0:
+        vprint("[yellow]No Defined Tokens[/yellow]")
+    else:
+        selection = pick(options=token_cache.defined, title="Select Token")
+        api_token = token_cache.get(selection[0])
+        subprocess.run("pbcopy", text=True, input=api_token)
+        vprint(f"[green]{selection[0].title()} Token Copied[/green]")

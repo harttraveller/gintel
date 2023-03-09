@@ -61,7 +61,7 @@ class Tokens:
         else:
             raise Exception("Invalid Token Name")
 
-    def remove(self, name: str, token: str) -> bool:
+    def remove(self, name: str) -> bool:
         if name in self.data.keys():
             self.data[name] = None
             self.save()

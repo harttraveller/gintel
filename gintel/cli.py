@@ -13,6 +13,23 @@ def entry():
 
 
 @entry.group()
+def cache():
+    pass
+
+
+@cache.command()
+def explore():
+    "Opens finder window at data cache location."
+    pass
+
+
+@cache.command()
+def clear():
+    "Clears cached data."
+    pass
+
+
+@entry.group()
 def tokens():
     pass
 

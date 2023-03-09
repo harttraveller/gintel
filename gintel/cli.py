@@ -2,7 +2,7 @@ import click
 import subprocess
 
 from pick import pick
-from gintel.utils import Tokens, vprint, clear
+from gintel.utils import Tokens, vprint
 
 token_cache = Tokens()
 

@@ -1,0 +1,46 @@
+site_name: gintel
+repo_name: harttraveller/gintel
+repo_url: "https://github.com/harttraveller/gintel"
+
+plugins:
+- search
+- glightbox
+
+theme:
+  name: material
+  custom_dir: overrides
+  logo: assets/gintel-medium.png
+  favicon: assets/gintel-small.png
+  icon:
+    repo: fontawesome/brands/github
+  palette:
+    scheme: slate
+    primary: black
+    accent: orange
+  features:
+  - header.autohide
+  - navigation.instant
+  - navigation.tracking
+  - content.code.copy
+
+extra_css:
+- stylesheets/extra.css
+
+markdown_extensions:
+- md_in_html
+- admonition
+- attr_list
+- pymdownx.details
+- pymdownx.inlinehilite
+- pymdownx.snippets
+- pymdownx.superfences
+- pymdownx.highlight:
+    anchor_linenums: true
+    use_pygments: true
+- pymdownx.tasklist:
+    custom_checkbox: true
+- pymdownx.tabbed:
+    alternate_style: true
+
+nav:
+- About: "index.md"

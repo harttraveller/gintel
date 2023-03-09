@@ -1,6 +1,7 @@
 import math
 from typing import Optional
 from pydantic.dataclasses import dataclass
+from pydantic.validators import validator
 
 
 @dataclass
@@ -10,6 +11,10 @@ class Position:
     ty: Optional[int] = None
     lt: Optional[float] = None
     lg: Optional[float] = None
+
+    @validator("zm")
+    def __validate_zm(cls, zm: int) -> int:
+        pass
 
     def __post_init__(self):
         pass

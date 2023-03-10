@@ -2,6 +2,6 @@ class Mapbox:
     pass
 
 
-class Endpoints:
+class Endpoint:
     def __init__(self):
-        self.mapbox = Mapbox
+        self.mapbox = Mapbox()

@@ -33,18 +33,20 @@ features
 # %%
 from __future__ import annotations
 import math
-from pydantic.dataclasses import dataclass
+from pydantic import BaseModel, validator
 from gintel.env import TTC_MAP
 
 #%%
-@dataclass
-class Coordinate:
-    pass
 
 
-@dataclass
-class Tile:
-    pass
+class Coordinate(BaseModel):
+    latitude: float
+    longitude: float
+
+
+class Tile(BaseModel):
+    x: int
+    y: int
 
 
 #%%
@@ -121,46 +123,29 @@ class PositionBuilder:
 
 
 # %%
-@dataclass
-class Position:
-    latitude: float
-    longitude: float
-    tile_x: int
-    tile_y: int
-    zoom: int
-
-    @staticmethod
-    def make(**kwargs) -> Position:
-        pass
-
-    @property
-    def coordinates(self) -> tuple[float]:
-        return (self.latitude, self.longitude)
-
-    def save():
-        pass
 
 
-# %%
-@dataclass
 class Image:
     pass
 
 
 # %%
-@dataclass
+
+
 class Map:
     pass
 
 
 # %%
-@dataclass
+
+
 class Data:
     pass
 
 
 # %%
-@dataclass
+
+
 class Gintel:
     position: Position
     # cache: bool = False # TODO: Not yet implemented

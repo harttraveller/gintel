@@ -36,6 +36,16 @@ import math
 from pydantic.dataclasses import dataclass
 from gintel.env import TTC_MAP
 
+#%%
+@dataclass
+class Coordinates:
+    pass
+
+
+@dataclass
+class Tiles:
+    pass
+
 
 #%%
 class PositionBuilder:
@@ -103,6 +113,11 @@ class PositionBuilder:
         lat_rad = math.atan(math.sinh(math.pi * (1 - 2 * (tile_y + y_add) / n)))
         latitude = math.degrees(lat_rad)
         return (latitude, longitude)
+
+    @staticmethod
+    def translate(self, loc: Coordinates | Tiles, target: str):
+        # TODO: add coordinate translation
+        pass
 
 
 # %%

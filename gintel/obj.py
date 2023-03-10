@@ -18,7 +18,38 @@
 from __future__ import annotations
 import math
 from pydantic.dataclasses import dataclass
-from pydantic.validators import validator
+
+
+#%%
+class PositionBuilder:
+    @staticmethod
+    def validate_zoom(zoom: int) -> None:
+        if (zoom >= 0) and (zoom <= 19):
+            return zoom
+        else:
+            raise Exception("Zoom is not within allowed range: [0, 19]")
+
+    @staticmethod
+    def validate_latitude(latitude: float) -> float:
+        if (latitude >= -90) and (latitude <= 90):
+            return latitude
+        else:
+            raise Exception("Latitude is not within allowed range: [-90, 90]")
+
+    @staticmethod
+    def validate_longitude(longitude: float) -> float:
+        if (longitude >= -180) and (longitude <= 180):
+            return longitude
+        else:
+            raise Exception("Longitude is not within allowed range: [-180, 180]")
+
+    @staticmethod
+    def validate_tile_x(tile_x: int) -> int:
+        pass
+
+    @staticmethod
+    def validate_tile_y(tile_y: int) -> int:
+        pass
 
 
 # %%
@@ -29,35 +60,6 @@ class Position:
     tile_x: int
     tile_y: int
     zoom: int
-
-    @validator("zoom")
-    def __validate_zoom(cls, zoom: int) -> int:
-        if (zoom >= 0) and (zoom <= 19):
-            return zoom
-        else:
-            raise Exception("Zoom is not within allowed range: [0, 19]")
-
-    @validator("latitude")
-    def __validate_latitude(cls, latitude: float) -> float:
-        if (latitude >= -90) and (latitude <= 90):
-            return latitude
-        else:
-            raise Exception("Latitude is not within allowed range: [-90, 90]")
-
-    @validator("longitude")
-    def __validate_longitude(cls, longitude: float) -> float:
-        if (longitude >= -180) and (longitude <= 180):
-            return longitude
-        else:
-            raise Exception("Longitude is not within allowed range: [-180, 180]")
-
-    @validator("tile_x")
-    def __validate_tile_x(cls, tile_x: int) -> int:
-        pass
-
-    @validator("tile_y")
-    def __validate_tile_y(cls, tile_y: int) -> int:
-        pass
 
     @staticmethod
     def __validate_loc(

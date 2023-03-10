@@ -66,6 +66,9 @@ class Bounds(BaseModel):
 
 
 class Box(BaseModel):
+    bounds: Bounds
+    dimensions: Dimensions
+
     @property
     def area(self) -> float:
         # ! note that this may not be accurate, as the real area is on a curved surface

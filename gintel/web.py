@@ -38,6 +38,10 @@ class Endpoint(ABC):
     def validate(self) -> bool:
         raise NotImplementedError()
 
+    @abstractmethod
+    def access(self) -> bool:
+        raise NotImplementedError()
+
 
 class Mapbox(Endpoint):
     def __init__(self, token: str | None = None) -> None:

@@ -12,6 +12,10 @@ Kwargs mapping
 
 features
 - saving .gintel saves as compressed pickle binary
+
+TODO:
+- calc distance between two lat/long points
+- assert that the box is actually a rectangle, and not some other lopsided shape
 """
 
 # ---
@@ -57,7 +61,8 @@ class Height(BaseModel):
 
 
 class Dimensions(BaseModel):
-    pass
+    width: Width
+    height: Height
 
 
 class Box(BaseModel):

@@ -7,6 +7,9 @@ token_cache = Tokens()
 
 class Mapbox:
     def __init__(self, token: str | None = None) -> None:
+        self.__init_token(token)
+
+    def __init_token(self, token: str | None = None) -> None:
         if token is None:
             if "mapbox" in token_cache.defined:
                 self.token = token_cache.get("mapbox")

@@ -87,6 +87,14 @@ class PositionBuilder:
         tile_y = int((1.0 - math.asinh(math.tan(lat_rad)) / math.pi) / 2.0 * n)
         return (tile_x, tile_y)
 
+    @staticmethod
+    def tiles_to_coordinates(tile_x: int, tile_y: int, zoom: int) -> tuple[float]:
+        n = 2.0**zoom
+        longitude = tile_x / n * 360.0 - 180.0
+        lat_rad = math.atan(math.sinh(math.pi * (1 - 2 * tile_y / n)))
+        latitude = math.degrees(lat_rad)
+        return (latitude, longitude)
+
 
 # %%
 @dataclass

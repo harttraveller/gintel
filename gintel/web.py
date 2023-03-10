@@ -119,15 +119,3 @@ class Interface:
 
     def query(self, **kwargs) -> Any:
         pass
-
-
-# %%
-mapbox = Mapbox()
-
-# %%
-img = mapbox.elevation(4823, 6160, 14)
-
-# %%
-img
-
-# %%

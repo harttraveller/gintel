@@ -82,6 +82,12 @@ class Mapbox(Endpoint):
     def _elevation(self, tile_x: int, tile_y: int, zoom: int) -> str:
         return f"{self.__elevation}/{str(zoom)}/{str(tile_x)}/{str(tile_y)}@2x.pngraw?access_token={self.__token}"
 
+    def satellite(self):
+        pass
+
+    def elevation(self):
+        pass
+
     @property
     def access(self) -> bool:
         resp = requests.get(self.__access)

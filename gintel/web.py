@@ -15,6 +15,8 @@
 # ---
 
 # %%
+import requests
+
 from typing import Any
 from abc import ABC, abstractmethod
 
@@ -74,11 +76,13 @@ class Mapbox(Endpoint):
         super().__init__("mapbox", token)
 
     def __init_endpoints(self) -> None:
-        pass
+        self.base: str = "https://api.mapbox.com"
+        self.valid: str = f"{self.base}/tokens/v2?access_token={self.token}"
 
     @property
     def access(self) -> bool:
-        pass
+        resp = requests.get(self.valid)
+        return resp.json()["code"] == "TokenValid"
 
     def query(self, **kwargs) -> Any:
         pass

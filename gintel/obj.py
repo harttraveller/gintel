@@ -43,20 +43,45 @@ class Coordinate(BaseModel):
     latitude: float
     longitude: float
 
+    @property
+    def pair(self) -> tuple[float]:
+        return (self.latitude, self.longitude)
 
-class Tile(BaseModel):
-    x: int
-    y: int
 
-
-class Box(BaseModel):
+class Width:
     pass
 
 
+class Height:
+    pass
+
+
+class Box(BaseModel):
+    NW: Coordinate
+    NE: Coordinate
+    SW: Coordinate
+    SE: Coordinate
+    CE: Coordinate
+
+
+class Tile(BaseModel):
+    """
+    A single tile position.
+
+    Args:
+        x (int): _description_
+        y (int): _description_
+        z (int): zoom level
+    """
+
+    x: int
+    y: int
+    z: int
+
+
 class Position(BaseModel):
-    coordinate: Coordinate
+    box: Box
     tile: Tile
-    zoom: int
 
     @staticmethod
     def make(**kwargs) -> Position:

@@ -10,7 +10,7 @@ class Endpoint(ABC):
     pass
 
 
-class Mapbox:
+class Mapbox(Endpoint):
     def __init__(self, token: str | None = None) -> None:
         self.__init_token(token)
 

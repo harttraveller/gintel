@@ -48,11 +48,15 @@ class Coordinate(BaseModel):
         return (self.latitude, self.longitude)
 
 
-class Width:
+class Width(BaseModel):
     pass
 
 
-class Height:
+class Height(BaseModel):
+    pass
+
+
+class Dimensions(BaseModel):
     pass
 
 

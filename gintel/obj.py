@@ -50,11 +50,13 @@ class Tile(BaseModel):
 
 
 class Position(BaseModel):
-    latitude: float
-    longitude: float
-    tile_x: int
-    tile_y: int
+    coordinate: Coordinate
+    tile: Tile
     zoom: int
+
+    @validator("zoom")
+    def __validate_zoom(cls, zoom: int) -> int:
+        pass
 
     @staticmethod
     def make(**kwargs) -> Position:

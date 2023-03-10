@@ -71,14 +71,20 @@ class Mapbox(Endpoint):
         self._validate_token()
 
     def _init_endpoints(self) -> None:
-        self.base: str = "https://api.mapbox.com"
-        self.valid: str = f"{self.base}/tokens/v2?access_token={self.token}"
-        self.satellite: str = f"{self.base}/v4/mapbox.satellite"
-        self.elevation: str = f"{self.base}/v4/mapbox.terrain-rgb"
+        self.__base: str = "https://api.mapbox.com"
+        self.__valid: str = f"{self.__base}/tokens/v2?access_token={self.token}"
+        self.__satellite: str = f"{self.__base}/v4/mapbox.satellite"
+        self.__elevation: str = f"{self.__base}/v4/mapbox.terrain-rgb"
+
+    def satellite(self, tx: int, ty: int, z: int) -> str:
+        return f"{self.__satellite}/{str(z)}/{str(tx)}/{str(ty)}@2x.png?access_token={self.token}"
+
+    def elevation(self, tx: int, ty: int, z: int) -> str:
+        return f"{self.__elevation}/{str(z)}/{str(tx)}/{str(ty)}@2x.pngraw?access_token={self.token}"
 
     @property
     def access(self) -> bool:
-        resp = requests.get(self.valid)
+        resp = requests.get(self.__valid)
         return resp.json()["code"] == "TokenValid"
 
 

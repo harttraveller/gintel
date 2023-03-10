@@ -56,20 +56,22 @@ class Dimensions(BaseModel):
     width: float
     height: float
 
+
+class Bounds(BaseModel):
+    NW: Coordinate
+    NE: Coordinate
+    SW: Coordinate
+    SE: Coordinate
+    CE: Coordinate
+
+
+class Box(BaseModel):
     @property
     def area(self) -> float:
         # ! note that this may not be accurate, as the real area is on a curved surface
         # ! and not on a flat surface.
         # TODO: update function with appropriate math
         return self.width * self.height
-
-
-class Box(BaseModel):
-    NW: Coordinate
-    NE: Coordinate
-    SW: Coordinate
-    SE: Coordinate
-    CE: Coordinate
 
 
 class Tile(BaseModel):
@@ -90,6 +92,7 @@ class Tile(BaseModel):
 class Position(BaseModel):
     box: Box
     tile: Tile
+    dimensions: Dimensions
 
     @staticmethod
     def make(**kwargs) -> Position:

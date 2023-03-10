@@ -68,7 +68,6 @@ class Endpoint(ABC):
         raise NotImplementedError()
 
 
-
 # %%
 class Mapbox(Endpoint):
     def __init__(self, token: str | None = None) -> None:
@@ -79,6 +78,8 @@ class Mapbox(Endpoint):
     def _init_endpoints(self) -> None:
         self.base: str = "https://api.mapbox.com"
         self.valid: str = f"{self.base}/tokens/v2?access_token={self.token}"
+        self.satellite: str = f"{self.base}/v4/mapbox.satellite"
+        self.elevation: str = f"{self.base}/v4/mapbox.terrain-rgb"
 
     @property
     def access(self) -> bool:

@@ -10,6 +10,8 @@ class Endpoint(ABC):
     def __init__(self, name: str, token: str | None = None) -> None:
         self.__init_name(name)
         self.__init_token(token)
+        self.__init_endpoints()
+        self.__validate()
 
     def __init_name(self, name: str) -> None:
         if self.name in token_cache.services:
@@ -33,7 +35,7 @@ class Endpoint(ABC):
         raise NotImplementedError()
 
     @abstractmethod
-    def validate(self, token: str) -> bool:
+    def validate(self) -> bool:
         raise NotImplementedError()
 
 

@@ -24,33 +24,39 @@ from pydantic.validators import validator
 # %%
 @dataclass
 class Position:
-    lt: float
-    lg: float
-    tx: int
-    ty: int
-    zm: int
+    latitude: float
+    longitude: float
+    tile_x: int
+    tile_y: int
+    zoom: int
 
-    @validator("zm")
-    def __validate_zm(cls, zm: int) -> int:
-        if (zm >= 0) and (zm <= 19):
-            return zm
+    @validator("zoom")
+    def __validate_zoom(cls, zoom: int) -> int:
+        if (zoom >= 0) and (zoom <= 19):
+            return zoom
         else:
             raise Exception("Zoom is not within allowed range: [0, 19]")
 
-    @validator("lt")
-    def __validate_lt(cls, lt: float) -> float:
+    @validator("latitude")
+    def __validate_latitude(cls, latitude: float) -> float:
+        if (latitude >= -90) and (latitude <= 90):
+            return latitude
+        else:
+            raise Exception("Latitude is not within allowed range: [-90, 90]")
+
+    @validator("longitude")
+    def __validate_longitude(cls, longitude: float) -> float:
+        if (longitude >= -180) and (longitude <= 180):
+            return longitude
+        else:
+            raise Exception("Longitude is not within allowed range: [-180, 180]")
+
+    @validator("tile_x")
+    def __validate_tile_x(cls, tile_x: int) -> int:
         pass
 
-    @validator("lg")
-    def __validate_lg(cls, lg: float) -> float:
-        pass
-
-    @validator("tx")
-    def __validate_tx(cls, tx: int) -> int:
-        pass
-
-    @validator("ty")
-    def __validate_ty(cls, ty: int) -> int:
+    @validator("tile_y")
+    def __validate_tile_y(cls, tile_y: int) -> int:
         pass
 
     @staticmethod

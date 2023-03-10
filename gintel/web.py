@@ -98,8 +98,30 @@ mapbox.access
 
 
 # %%
+class Interface:
+    def __init__(self, **kwargs):
+        """
+        The keywords arguments passed represent if the user wants to pass tokens directly.
+        """
+        self.__validate_token_kwargs(kwargs)
+        self.mapbox = Mapbox(
+            token=kwargs["mapbox"] if "mapbox" in kwargs.keys() else None
+        )
+
+    def __validate_token_kwargs(self, kwargs: dict[str, str]) -> None:
+        invalid_services = set(kwargs.keys()).difference(token_cache.services)
+        if len(invalid_services):
+            raise Exception(f"Invalid service name passed: {invalid_services}")
+
 
 # %%
-class Interface:
-    def __init__(self):
-        self.mapbox = Mapbox()
+interface = Interface(mapbox="asdf")
+
+# %%
+
+# %%
+{1, 2, 3}.difference({1, 2, 3, 4})
+
+# %%
+
+# %%

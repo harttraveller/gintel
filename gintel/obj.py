@@ -154,7 +154,11 @@ class Gintel:
     def make(position: Position) -> Gintel:
         pass
 
-    def visualize(**kwargs) -> Gintel:
+    def build(self, **kwargs) -> bool:
+        # TODO: for complex queries requiring multiple satellite images or varying data, this may be necessary
+        pass
+
+    def visualize(**kwargs):
         pass
 
     def save():

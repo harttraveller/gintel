@@ -49,6 +49,10 @@ class Tile(BaseModel):
     y: int
 
 
+class Box(BaseModel):
+    pass
+
+
 class Position(BaseModel):
     coordinate: Coordinate
     tile: Tile

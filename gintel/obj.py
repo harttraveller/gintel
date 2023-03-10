@@ -49,7 +49,7 @@ class Tile(BaseModel):
     y: int
 
 
-class Position:
+class Position(BaseModel):
     latitude: float
     longitude: float
     tile_x: int

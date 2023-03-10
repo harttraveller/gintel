@@ -36,8 +36,8 @@ class Endpoint(ABC):
 
     @abstractmethod
     def __validate_token(self) -> bool:
-        # if self.access
-        pass
+        if not self.access:
+            raise Exception("Cannot access the API, token may be invalid.")
 
     @property
     @abstractmethod

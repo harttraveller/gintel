@@ -64,6 +64,10 @@ class Dimensions(BaseModel):
     width: Width
     height: Height
 
+    @property
+    def area(self) -> float:
+        pass
+
 
 class Box(BaseModel):
     NW: Coordinate

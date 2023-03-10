@@ -148,6 +148,7 @@ class Data:
 @dataclass
 class Gintel:
     position: Position
+    # cache: bool = False # TODO: Not yet implemented
 
     @staticmethod
     def make(position: Position) -> Gintel:

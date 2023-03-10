@@ -1,5 +1,6 @@
 class Mapbox:
-    pass
+    def __init__(self, token: str) -> None:
+        pass
 
 
 class Endpoint:

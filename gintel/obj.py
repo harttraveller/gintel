@@ -38,12 +38,12 @@ from gintel.env import TTC_MAP
 
 #%%
 @dataclass
-class Coordinates:
+class Coordinate:
     pass
 
 
 @dataclass
-class Tiles:
+class Tile:
     pass
 
 

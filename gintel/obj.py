@@ -1,3 +1,20 @@
+# ---
+# jupyter:
+#   jupytext:
+#     cell_metadata_filter: -all
+#     custom_cell_magics: kql
+#     text_representation:
+#       extension: .py
+#       format_name: percent
+#       format_version: '1.3'
+#       jupytext_version: 1.11.2
+#   kernelspec:
+#     display_name: base
+#     language: python
+#     name: python3
+# ---
+
+# %%
 """
 Kwargs mapping
 
@@ -41,7 +58,7 @@ import mercantile
 from pydantic import BaseModel, validator
 from gintel.env import TTC_MAP
 
-#%%
+# %%
 
 
 class Coordinate(BaseModel):
@@ -99,8 +116,8 @@ class Position(BaseModel):
 
     @property
     def area(self) -> float:
-        # ! note that this may not be accurate, as the real area is on a curved surface
-        # ! and not on a flat surface.
+        # # ! note that this may not be accurate, as the real area is on a curved surface
+        # # ! and not on a flat surface.
         # TODO: update function with appropriate math
         return self.box.dimensions.width * self.box.dimensions.height
 
@@ -118,7 +135,17 @@ class Position(BaseModel):
         return (x_tile_range, y_tile_range)
 
 
-#%%
+# %%
+
+# %%
+
+# %%
+
+# %%
+
+# %%
+
+# %%
 class PositionBuilder:
     @staticmethod
     def validate_zoom(zoom: int) -> None:

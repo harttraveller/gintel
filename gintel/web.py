@@ -30,18 +30,16 @@ token_cache = Tokens()
 # %%
 class Endpoint(ABC):
     def __init__(self, name: str, token: str | None = None) -> None:
-        self.__init_name(name)
-        self.__init_token(token)
-        self.__init_endpoints()
-        self.__validate_token()
+        self._init_name(name)
+        self._init_token(token)
 
-    def __init_name(self, name: str) -> None:
-        if self.name in token_cache.services:
-            self.name = self.name
+    def _init_name(self, name: str) -> None:
+        if name in token_cache.services:
+            self.name = name
         else:
             raise Exception(f"{name.title()} not a valid service.")
 
-    def __init_token(self, token: str | None = None) -> None:
+    def _init_token(self, token: str | None = None) -> None:
         if token is None:
             if self.name in token_cache.defined:
                 self.token = token_cache.get(self.name)
@@ -52,16 +50,12 @@ class Endpoint(ABC):
         else:
             self.token = token
 
-    def __validate_token(self) -> bool:
+    def _validate_token(self) -> bool:
         if not self.access:
             raise Exception("Cannot access the API, token may be invalid.")
 
     @abstractmethod
-    def __init_endpoints(self) -> None:
-        raise NotImplementedError()
-
-    @abstractmethod
-    def query(self, **kwargs) -> Any:
+    def _init_endpoints(self) -> None:
         raise NotImplementedError()
 
     @property
@@ -69,13 +63,20 @@ class Endpoint(ABC):
     def access(self) -> bool:
         raise NotImplementedError()
 
+    @abstractmethod
+    def query(self, **kwargs) -> Any:
+        raise NotImplementedError()
+
+
 
 # %%
 class Mapbox(Endpoint):
     def __init__(self, token: str | None = None) -> None:
         super().__init__("mapbox", token)
+        self._init_endpoints()
+        self._validate_token()
 
-    def __init_endpoints(self) -> None:
+    def _init_endpoints(self) -> None:
         self.base: str = "https://api.mapbox.com"
         self.valid: str = f"{self.base}/tokens/v2?access_token={self.token}"
 
@@ -87,6 +88,15 @@ class Mapbox(Endpoint):
     def query(self, **kwargs) -> Any:
         pass
 
+
+# %%
+mapbox = Mapbox()
+
+# %%
+mapbox.access
+
+
+# %%
 
 # %%
 class Interface:

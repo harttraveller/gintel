@@ -20,7 +20,6 @@ import requests
 from typing import Any
 from abc import ABC, abstractmethod
 
-# %%
 from gintel.utils import Tokens
 
 # %%
@@ -84,13 +83,6 @@ class Mapbox(Endpoint):
 
 
 # %%
-mapbox = Mapbox()
-
-# %%
-mapbox.access
-
-
-# %%
 class Interface:
     def __init__(self, **kwargs):
         """
@@ -108,16 +100,3 @@ class Interface:
 
     def query(self, **kwargs) -> Any:
         pass
-
-
-# %%
-interface = Interface(mapbox="asdf")
-
-# %%
-
-# %%
-{1, 2, 3}.difference({1, 2, 3, 4})
-
-# %%
-
-# %%

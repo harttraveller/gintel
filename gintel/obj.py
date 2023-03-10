@@ -34,6 +34,7 @@ features
 from __future__ import annotations
 import math
 from pydantic.dataclasses import dataclass
+from gintel.env import TTC_MAP
 
 
 #%%
@@ -80,7 +81,9 @@ class PositionBuilder:
             raise Exception("Either the tiles, or coordinates must be defined.")
 
     @staticmethod
-    def coordinates_to_tiles(latitude: float, longitude: float, zoom: int) -> tuple[int]:
+    def coordinates_to_tiles(
+        latitude: float, longitude: float, zoom: int, loc: str = "NW"
+    ) -> tuple[int]:
         lat_rad = math.radians(latitude)
         n = 2.0**zoom
         tile_x = int((longitude + 180.0) / 360.0 * n)
@@ -88,10 +91,16 @@ class PositionBuilder:
         return (tile_x, tile_y)
 
     @staticmethod
-    def tiles_to_coordinates(tile_x: int, tile_y: int, zoom: int) -> tuple[float]:
+    def tiles_to_coordinates(
+        tile_x: int, tile_y: int, zoom: int, loc: str = "NW"
+    ) -> tuple[float]:
+        assert (
+            loc in TTC_MAP.keys()
+        ), f"Invalid location, must be in {list(TTC_MAP.keys())}"
+        x_add, y_add = TTC_MAP[loc]
         n = 2.0**zoom
-        longitude = tile_x / n * 360.0 - 180.0
-        lat_rad = math.atan(math.sinh(math.pi * (1 - 2 * tile_y / n)))
+        longitude = (tile_x + x_add) / n * 360.0 - 180.0
+        lat_rad = math.atan(math.sinh(math.pi * (1 - 2 * (tile_y + y_add) / n)))
         latitude = math.degrees(lat_rad)
         return (latitude, longitude)
 

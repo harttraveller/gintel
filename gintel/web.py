@@ -17,6 +17,9 @@ class Mapbox:
         else:
             self.token = token
 
+    def validate(token: str) -> bool:
+        pass
+
     def query(self, **kwargs) -> Any:
         pass
 

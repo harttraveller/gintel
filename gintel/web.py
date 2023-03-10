@@ -7,8 +7,9 @@ token_cache = Tokens()
 
 
 class Endpoint(ABC):
-    def __init__(self, name: str) -> None:
-        self.name = name
+    def __init__(self, name: str, token: str | None = None) -> None:
+        self.__init_name(name)
+        self.__init_token(token)
 
     def __init_name(self, name: str) -> None:
         if self.name in token_cache.services:

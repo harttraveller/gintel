@@ -1,5 +1,5 @@
-from abc import ABC, abstractmethod
 from typing import Any
+from abc import ABC, abstractmethod
 
 from gintel.utils import Tokens
 
@@ -8,7 +8,12 @@ token_cache = Tokens()
 
 class Endpoint(ABC):
     def __init__(self, name: str) -> None:
-        pass
+        self.name = name
+
+    @staticmethod
+    @abstractmethod
+    def validate(token: str) -> bool:
+        raise NotImplementedError()
 
 
 class Mapbox(Endpoint):

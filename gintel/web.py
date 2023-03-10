@@ -36,8 +36,10 @@ class Endpoint(ABC):
 
     @abstractmethod
     def __validate_token(self) -> bool:
-        raise NotImplementedError()
+        # if self.access
+        pass
 
+    @property
     @abstractmethod
     def access(self) -> bool:
         raise NotImplementedError()

@@ -76,11 +76,11 @@ class Mapbox(Endpoint):
         self.__satellite: str = f"{self.__base}/v4/mapbox.satellite"
         self.__elevation: str = f"{self.__base}/v4/mapbox.terrain-rgb"
 
-    def satellite(self, tx: int, ty: int, z: int) -> str:
-        return f"{self.__satellite}/{str(z)}/{str(tx)}/{str(ty)}@2x.png?access_token={self.__token}"
+    def satellite(self, tile_x: int, tile_y: int, zoom: int) -> str:
+        return f"{self.__satellite}/{str(zoom)}/{str(tile_x)}/{str(tile_y)}@2x.png?access_token={self.__token}"
 
-    def elevation(self, tx: int, ty: int, z: int) -> str:
-        return f"{self.__elevation}/{str(z)}/{str(tx)}/{str(ty)}@2x.pngraw?access_token={self.__token}"
+    def elevation(self, tile_x: int, tile_y: int, zoom: int) -> str:
+        return f"{self.__elevation}/{str(zoom)}/{str(tile_x)}/{str(tile_y)}@2x.pngraw?access_token={self.__token}"
 
     @property
     def access(self) -> bool:

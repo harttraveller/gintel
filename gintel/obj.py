@@ -62,10 +62,6 @@ class Position(BaseModel):
     def make(**kwargs) -> Position:
         pass
 
-    @property
-    def coordinates(self) -> tuple[float]:
-        return (self.latitude, self.longitude)
-
     def save():
         pass
 

@@ -15,10 +15,12 @@
 # ---
 
 # %%
+import io
 import requests
 
 from typing import Any
 from abc import ABC, abstractmethod
+from PIL import Image
 
 from gintel.utils import Tokens
 
@@ -82,8 +84,10 @@ class Mapbox(Endpoint):
     def _elevation(self, tile_x: int, tile_y: int, zoom: int) -> str:
         return f"{self.__elevation}/{str(zoom)}/{str(tile_x)}/{str(tile_y)}@2x.pngraw?access_token={self.__token}"
 
-    def satellite(self):
-        pass
+    def satellite(self, tile_x: int, tile_y: int, zoom: int):
+        resp = requests.get(self.endpoint.satellite(tile_x, tile_y, zoom), stream=True)
+        image = Image.open(io.BytesIO(resp.raw.data))
+        return image
 
     def elevation(self):
         pass

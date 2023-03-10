@@ -58,7 +58,9 @@ class Dimensions(BaseModel):
 
     @property
     def area(self) -> float:
-        # !
+        # ! note that this may not be accurate, as the real area is on a curved surface
+        # ! and not on a flat surface.
+        # TODO: update function with appropriate math
         return self.width * self.height
 
 

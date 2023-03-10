@@ -109,7 +109,22 @@ class Position:
 
 
 # %%
-pos = Position.make(zm=14, lt=100, lg=100)
+@dataclass
+class Image:
+    pass
+
+
+# %%
+@dataclass
+class Map:
+    pass
+
+
+# %%
+@dataclass
+class Data:
+    pass
+
 
 # %%
 @dataclass
@@ -117,6 +132,9 @@ class Gintel:
     position: Position
 
     def make(**kwargs) -> Gintel:
+        pass
+
+    def visualize(**kwargs) -> Gintel:
         pass
 
     def save():

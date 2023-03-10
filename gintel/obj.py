@@ -1,7 +1,7 @@
 """
 Kwargs mapping
 
-- latitude, longitude, zoom
+- latitude, longitude, zoom, loc (NW, NE, SW, SE, CE)
 - tile_x, tile_y, zoom
 - latitude, longitude, radius (degrees, miles, kilometers)
 - lat/long upper left, lat/long lower right

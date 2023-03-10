@@ -37,6 +37,7 @@ TODO:
 # %%
 from __future__ import annotations
 import math
+import mercantile
 from pydantic import BaseModel, validator
 from gintel.env import TTC_MAP
 
@@ -83,6 +84,10 @@ class Tile(BaseModel):
     x: int
     y: int
     z: int
+
+    @property
+    def ranges(self):
+
 
 
 class Position(BaseModel):

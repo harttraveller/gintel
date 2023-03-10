@@ -1,11 +1,31 @@
+# ---
+# jupyter:
+#   jupytext:
+#     cell_metadata_filter: -all
+#     custom_cell_magics: kql
+#     text_representation:
+#       extension: .py
+#       format_name: percent
+#       format_version: '1.3'
+#       jupytext_version: 1.11.2
+#   kernelspec:
+#     display_name: base
+#     language: python
+#     name: python3
+# ---
+
+# %%
 from typing import Any
 from abc import ABC, abstractmethod
 
+# %%
 from gintel.utils import Tokens
 
+# %%
 token_cache = Tokens()
 
 
+# %%
 class Endpoint(ABC):
     def __init__(self, name: str, token: str | None = None) -> None:
         self.__init_name(name)
@@ -38,27 +58,29 @@ class Endpoint(ABC):
         if not self.access:
             raise Exception("Cannot access the API, token may be invalid.")
 
+    @abstractmethod
+    def query(self, **kwargs) -> Any:
+        raise NotImplementedError()
+
     @property
     @abstractmethod
     def access(self) -> bool:
         raise NotImplementedError()
 
 
+# %%
 class Mapbox(Endpoint):
     def __init__(self, token: str | None = None) -> None:
-        self.__init_token(token)
+        super().__init__("mapbox", token)
 
-    def __init_token(self, token: str | None = None) -> None:
-        pass
-
-    @staticmethod
-    def validate(token: str) -> bool:
+    def __init_endpoints(self) -> None:
         pass
 
     def query(self, **kwargs) -> Any:
         pass
 
 
+# %%
 class Interface:
     def __init__(self):
         self.mapbox = Mapbox()

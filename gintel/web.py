@@ -7,7 +7,8 @@ token_cache = Tokens()
 
 
 class Endpoint(ABC):
-    pass
+    def __init__(self, name: str) -> None:
+        pass
 
 
 class Mapbox(Endpoint):

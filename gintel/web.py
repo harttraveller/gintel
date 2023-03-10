@@ -10,9 +10,15 @@ class Endpoint(ABC):
     def __init__(self, name: str) -> None:
         self.name = name
 
+    def __init_name(self, name: str) -> None:
+        if self.name in token_cache.services:
+            self.name = self.name
+        else:
+            raise Exception(f"{name.title()} not a valid service.")
+
     def __init_token(self, token: str | None = None) -> None:
         if token is None:
-            if "mapbox" in token_cache.defined:
+            if self.name in token_cache.defined:
                 self.token = token_cache.get("mapbox")
             else:
                 raise Exception(

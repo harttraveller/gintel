@@ -1,8 +1,13 @@
+from abc import ABC
 from typing import Any
 
 from gintel.utils import Tokens
 
 token_cache = Tokens()
+
+
+class Endpoint(ABC):
+    pass
 
 
 class Mapbox:
@@ -28,6 +33,6 @@ class Mapbox:
         pass
 
 
-class Endpoint:
+class Interface:
     def __init__(self):
         self.mapbox = Mapbox()

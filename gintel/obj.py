@@ -53,7 +53,7 @@ class Coordinate(BaseModel):
 
 
 class Width(BaseModel):
-    pass
+    km: float
 
 
 class Height(BaseModel):

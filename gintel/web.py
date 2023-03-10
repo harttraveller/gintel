@@ -11,7 +11,7 @@ class Endpoint(ABC):
         self.__init_name(name)
         self.__init_token(token)
         self.__init_endpoints()
-        self.__validate()
+        self.__validate_token()
 
     def __init_name(self, name: str) -> None:
         if self.name in token_cache.services:
@@ -35,7 +35,7 @@ class Endpoint(ABC):
         raise NotImplementedError()
 
     @abstractmethod
-    def validate(self) -> bool:
+    def __validate_token(self) -> bool:
         raise NotImplementedError()
 
     @abstractmethod

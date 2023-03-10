@@ -89,7 +89,6 @@ class Tile(BaseModel):
 class Position(BaseModel):
     box: Box
     tile: Tile
-    dimensions: Dimensions
 
     @staticmethod
     def make(**kwargs) -> Position:
@@ -106,8 +105,17 @@ class Position(BaseModel):
         return self.box.dimensions.width * self.box.dimensions.height
 
     @property
-    def ranges(self):
-        pass
+    def ranges(self) -> tuple[list[int]]:
+        "tile ranges property"
+        nw_tiles = mercantile.tile(
+            self.box.bounds.NW.longitude, self.box.bounds.NW.latitude, self.tile.z
+        )
+        se_tiles = mercantile.tile(
+            self.box.bounds.SE.longitude, self.box.bounds.SE.latitude, self.tile.z
+        )
+        x_tile_range = [nw_tiles.x, se_tiles.x]
+        y_tile_range = [nw_tiles.y, se_tiles.y]
+        return (x_tile_range, y_tile_range)
 
 
 #%%

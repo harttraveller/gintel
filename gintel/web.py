@@ -43,13 +43,13 @@ class Endpoint(ABC):
     def _init_token(self, token: str | None = None) -> None:
         if token is None:
             if self.name in token_cache.defined:
-                self.__token = token_cache.get(self.name)
+                self.token = token_cache.get(self.name)
             else:
                 raise Exception(
                     f"{self.name.title()} token not passed, and not available in local cache."
                 )
         else:
-            self.__token = token
+            self.token = token
 
     def _validate_token(self) -> bool:
         if not self.access:
@@ -74,15 +74,15 @@ class Mapbox(Endpoint):
 
     def _init_endpoints(self) -> None:
         self.__base: str = "https://api.mapbox.com"
-        self.__access: str = f"{self.__base}/tokens/v2?access_token={self.__token}"
+        self.__access: str = f"{self.__base}/tokens/v2?access_token={self.token}"
         self.__satellite: str = f"{self.__base}/v4/mapbox.satellite"
         self.__elevation: str = f"{self.__base}/v4/mapbox.terrain-rgb"
 
     def _satellite(self, tile_x: int, tile_y: int, zoom: int) -> str:
-        return f"{self.__satellite}/{str(zoom)}/{str(tile_x)}/{str(tile_y)}@2x.png?access_token={self.__token}"
+        return f"{self.__satellite}/{str(zoom)}/{str(tile_x)}/{str(tile_y)}@2x.png?access_token={self.token}"
 
     def _elevation(self, tile_x: int, tile_y: int, zoom: int) -> str:
-        return f"{self.__elevation}/{str(zoom)}/{str(tile_x)}/{str(tile_y)}@2x.pngraw?access_token={self.__token}"
+        return f"{self.__elevation}/{str(zoom)}/{str(tile_x)}/{str(tile_y)}@2x.pngraw?access_token={self.token}"
 
     def satellite(self, tile_x: int, tile_y: int, zoom: int):
         resp = requests.get(self.endpoint.satellite(tile_x, tile_y, zoom), stream=True)
@@ -116,3 +116,12 @@ class Interface:
 
     def query(self, **kwargs) -> Any:
         pass
+
+
+# %%
+mapbox = Mapbox()
+
+# %%
+mapbox.satellite(4823, 6160, 14)
+
+# %%

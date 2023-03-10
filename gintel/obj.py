@@ -1,3 +1,19 @@
+"""
+Kwargs mapping
+
+- latitude, longitude, zoom
+- tile_x, tile_y, zoom
+- latitude, longitude, radius (degrees, miles, kilometers)
+- lat/long upper left, lat/long lower right
+- city
+- country
+- address
+- timestamp of image (if applicable)
+
+features
+- saving .gintel saves as compressed pickle binary
+"""
+
 # ---
 # jupyter:
 #   jupytext:
@@ -51,6 +67,18 @@ class PositionBuilder:
     def validate_tile_y(tile_y: int) -> int:
         pass
 
+    @staticmethod
+    def validate_location_params_filled(
+        latitude: float | None,
+        longitude: float | None,
+        tile_x: int | None,
+        tile_y: int | None,
+    ) -> None:
+        tiles_defined = all([tile_x is not None, tile_y is not None])
+        coordinates_defined = all([latitude is not None, longitude is not None])
+        if not any([tiles_defined, coordinates_defined]):
+            raise Exception("Either the tiles, or coordinates must be defined.")
+
 
 # %%
 @dataclass
@@ -62,28 +90,12 @@ class Position:
     zoom: int
 
     @staticmethod
-    def __validate_loc(
-        tx: int | None, ty: int | None, lt: float | None, lg: float | None
-    ) -> None:
-        tiles_defined = all([tx is not None, ty is not None])
-        coordinates_defined = all([lt is not None, lg is not None])
-        if not any([tiles_defined, coordinates_defined]):
-            raise Exception("Either the tiles, or coordinates must be defined.")
-
-    @staticmethod
-    def make(
-        zm: int,
-        tx: int | None = None,
-        ty: int | None = None,
-        lt: float | None = None,
-        lg: float | None = None,
-    ) -> Position:
-        Position.__validate_zm(zm)
-        Position.__validate_loc(tx, ty, lt, lg)
+    def make(**kwargs) -> Position:
+        pass
 
     @property
     def coordinates(self) -> tuple[float]:
-        return (self.lt, self.lg)
+        return (self.latitude, self.longitude)
 
     def deg2num(lat_deg, lon_deg, zoom):
         lat_rad = math.radians(lat_deg)
@@ -100,3 +112,12 @@ class Position:
 pos = Position.make(zm=14, lt=100, lg=100)
 
 # %%
+@dataclass
+class Gintel:
+    position: Position
+
+    def make(**kwargs) -> Gintel:
+        pass
+
+    def save():
+        pass

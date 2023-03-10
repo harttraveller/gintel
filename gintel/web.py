@@ -33,7 +33,7 @@ class Endpoint(ABC):
         raise NotImplementedError()
 
     @abstractmethod
-    def validate(token: str) -> bool:
+    def validate(self, token: str) -> bool:
         raise NotImplementedError()
 
 

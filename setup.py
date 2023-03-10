@@ -23,7 +23,7 @@ class Installation(install):
 
 setup(
     name="gintel",
-    version="0.0.0",
+    version="0.0.1",
     author="Hart Traveller",
     url="https://github.com/harttraveller/gintel",
     license="MIT",
@@ -31,7 +31,7 @@ setup(
     long_description_content_type="text/markdown",
     packages=find_packages(),
     include_package_data=True,
-    install_requires=["click", "requests", "pyeio"],
+    install_requires=["click", "requests", "pyeio", "pillow", "rich"],
     entry_points={"console_scripts": ["gintel=gintel.cli:entry"]},
     cmdclass={
         "install": Installation,

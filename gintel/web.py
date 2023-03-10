@@ -32,7 +32,6 @@ class Endpoint(ABC):
     def __init_endpoints(self) -> None:
         raise NotImplementedError()
 
-    @staticmethod
     @abstractmethod
     def validate(token: str) -> bool:
         raise NotImplementedError()

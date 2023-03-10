@@ -52,21 +52,14 @@ class Coordinate(BaseModel):
         return (self.latitude, self.longitude)
 
 
-class Width(BaseModel):
-    km: float
-
-
-class Height(BaseModel):
-    pass
-
-
 class Dimensions(BaseModel):
-    width: Width
-    height: Height
+    width: float
+    height: float
 
     @property
     def area(self) -> float:
-        pass
+        # !
+        return self.width * self.height
 
 
 class Box(BaseModel):

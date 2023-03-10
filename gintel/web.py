@@ -50,13 +50,13 @@ class Endpoint(ABC):
         else:
             self.token = token
 
-    @abstractmethod
-    def __init_endpoints(self) -> None:
-        raise NotImplementedError()
-
     def __validate_token(self) -> bool:
         if not self.access:
             raise Exception("Cannot access the API, token may be invalid.")
+
+    @abstractmethod
+    def __init_endpoints(self) -> None:
+        raise NotImplementedError()
 
     @abstractmethod
     def query(self, **kwargs) -> Any:
@@ -74,6 +74,10 @@ class Mapbox(Endpoint):
         super().__init__("mapbox", token)
 
     def __init_endpoints(self) -> None:
+        pass
+
+    @property
+    def access(self) -> bool:
         pass
 
     def query(self, **kwargs) -> Any:

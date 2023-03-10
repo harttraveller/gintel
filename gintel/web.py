@@ -17,11 +17,11 @@
 # %%
 import io
 import requests
-import PIL
 
 from typing import Any
 from abc import ABC, abstractmethod
 from PIL import Image
+from PIL.JpegImagePlugin import JpegImageFile
 
 from gintel.utils import Tokens
 
@@ -87,14 +87,14 @@ class Mapbox(Endpoint):
 
     def satellite(
         self, tile_x: int, tile_y: int, zoom: int
-    ) -> PIL.JpegImagePlugin.JpegImageFile:
+    ) -> JpegImageFile:
         resp = requests.get(self._satellite(tile_x, tile_y, zoom), stream=True)
         image = Image.open(io.BytesIO(resp.raw.data))
         return image
 
     def elevation(
         self, tile_x: int, tile_y: int, zoom: int
-    ) -> PIL.JpegImagePlugin.JpegImageFile:
+    ) -> JpegImageFile:
         resp = requests.get(self._elevation(tile_x, tile_y, zoom), stream=True)
         image = Image.open(io.BytesIO(resp.raw.data))
         return image
@@ -129,7 +129,7 @@ class Interface:
 mapbox = Mapbox()
 
 # %%
-img = mapbox.satellite(4823, 6160, 14)
+img = mapbox.elevation(4823, 6160, 14)
 
 # %%
 img

@@ -168,7 +168,7 @@ class PositionBuilder:
         return (latitude, longitude)
 
     @staticmethod
-    def translate(self, loc: Coordinates | Tiles, target: str):
+    def translate(self, loc: Coordinate | Tile, target: str):
         # TODO: add coordinate translation
         pass
 

@@ -17,6 +17,7 @@ class Mapbox:
         else:
             self.token = token
 
+    @staticmethod
     def validate(token: str) -> bool:
         pass
 

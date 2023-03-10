@@ -54,16 +54,13 @@ class Position(BaseModel):
     tile: Tile
     zoom: int
 
-    @validator("zoom")
-    def __validate_zoom(cls, zoom: int) -> int:
-        if (zoom >= 0) and (zoom <= 19):
-            return zoom
-        else:
-            raise Exception("Zoom is not within allowed range: [0, 19]")
-
     @staticmethod
     def make(**kwargs) -> Position:
         pass
+
+    @property
+    def coordinates(self) -> tuple[float]:
+        return (self.latitude, self.longitude)
 
     def save():
         pass
@@ -71,6 +68,13 @@ class Position(BaseModel):
 
 #%%
 class PositionBuilder:
+    @staticmethod
+    def validate_zoom(zoom: int) -> None:
+        if (zoom >= 0) and (zoom <= 19):
+            return zoom
+        else:
+            raise Exception("Zoom is not within allowed range: [0, 19]")
+
     @staticmethod
     def validate_latitude(latitude: float) -> float:
         if (latitude >= -90) and (latitude <= 90):

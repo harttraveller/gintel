@@ -1,0 +1,1 @@
+{"config":{"lang":["en"],"separator":"[\\s\\-]+","pipeline":["stopWordFilter"]},"docs":[{"location":"references/","title":"References","text":"<p>https://wiki.openstreetmap.org/wiki/Slippy_map_tilenames</p> <p>https://github.com/openstreetmap/svn-archive/tree/main</p>"}]}

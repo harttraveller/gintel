@@ -63,10 +63,6 @@ class Endpoint(ABC):
     def access(self) -> bool:
         raise NotImplementedError()
 
-    @abstractmethod
-    def query(self, **kwargs) -> Any:
-        raise NotImplementedError()
-
 
 # %%
 class Mapbox(Endpoint):
@@ -85,9 +81,6 @@ class Mapbox(Endpoint):
     def access(self) -> bool:
         resp = requests.get(self.valid)
         return resp.json()["code"] == "TokenValid"
-
-    def query(self, **kwargs) -> Any:
-        pass
 
 
 # %%

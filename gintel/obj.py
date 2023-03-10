@@ -85,10 +85,6 @@ class Tile(BaseModel):
     y: int
     z: int
 
-    @property
-    def ranges(self):
-
-
 
 class Position(BaseModel):
     box: Box
@@ -108,6 +104,10 @@ class Position(BaseModel):
         # ! and not on a flat surface.
         # TODO: update function with appropriate math
         return self.box.dimensions.width * self.box.dimensions.height
+
+    @property
+    def ranges(self):
+        pass
 
 
 #%%

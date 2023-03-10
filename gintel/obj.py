@@ -3,7 +3,7 @@ Kwargs mapping
 
 - latitude, longitude, zoom, loc (NW, NE, SW, SE, CE)
 - tile_x, tile_y, zoom
-- latitude, longitude, radius (degrees, miles, kilometers)
+- latitude, longitude, width/height (if one, assume square, if both, assume rectangle)
 - lat/long upper left, lat/long lower right
 - city
 - country

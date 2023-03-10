@@ -69,13 +69,6 @@ class Box(BaseModel):
     bounds: Bounds
     dimensions: Dimensions
 
-    @property
-    def area(self) -> float:
-        # ! note that this may not be accurate, as the real area is on a curved surface
-        # ! and not on a flat surface.
-        # TODO: update function with appropriate math
-        return self.dimensions.width * self.dimensions.height
-
 
 class Tile(BaseModel):
     """
@@ -103,6 +96,13 @@ class Position(BaseModel):
 
     def save():
         pass
+
+    @property
+    def area(self) -> float:
+        # ! note that this may not be accurate, as the real area is on a curved surface
+        # ! and not on a flat surface.
+        # TODO: update function with appropriate math
+        return self.box.dimensions.width * self.box.dimensions.height
 
 
 #%%

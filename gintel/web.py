@@ -4,4 +4,4 @@ class Mapbox:
 
 class Endpoints:
     def __init__(self):
-        pass
+        self.mapbox = Mapbox

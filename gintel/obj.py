@@ -49,6 +49,25 @@ class Tile(BaseModel):
     y: int
 
 
+class Position:
+    latitude: float
+    longitude: float
+    tile_x: int
+    tile_y: int
+    zoom: int
+
+    @staticmethod
+    def make(**kwargs) -> Position:
+        pass
+
+    @property
+    def coordinates(self) -> tuple[float]:
+        return (self.latitude, self.longitude)
+
+    def save():
+        pass
+
+
 #%%
 class PositionBuilder:
     @staticmethod

@@ -38,6 +38,10 @@ class Tokens:
         self.data = easy.load(TOKENS)
 
     @property
+    def services(self) -> list[str]:
+        return list(self.data.keys())
+
+    @property
     def defined(self) -> list[str]:
         return [k for k, v in self.data.items() if v is not None]
 

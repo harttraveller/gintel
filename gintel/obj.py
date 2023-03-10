@@ -36,6 +36,16 @@ import math
 from pydantic.dataclasses import dataclass
 from gintel.env import TTC_MAP
 
+#%%
+@dataclass
+class Coordinates:
+    pass
+
+
+@dataclass
+class Tiles:
+    pass
+
 
 #%%
 class PositionBuilder:
@@ -104,6 +114,11 @@ class PositionBuilder:
         latitude = math.degrees(lat_rad)
         return (latitude, longitude)
 
+    @staticmethod
+    def translate(self, loc: Coordinates | Tiles, target: str):
+        # TODO: add coordinate translation
+        pass
+
 
 # %%
 @dataclass
@@ -148,12 +163,17 @@ class Data:
 @dataclass
 class Gintel:
     position: Position
+    # cache: bool = False # TODO: Not yet implemented
 
     @staticmethod
     def make(position: Position) -> Gintel:
         pass
 
-    def visualize(**kwargs) -> Gintel:
+    def build(self, **kwargs) -> bool:
+        # TODO: for complex queries requiring multiple satellite images or varying data, this may be necessary
+        pass
+
+    def visualize(**kwargs):
         pass
 
     def save():

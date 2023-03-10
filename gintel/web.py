@@ -34,7 +34,6 @@ class Endpoint(ABC):
     def __init_endpoints(self) -> None:
         raise NotImplementedError()
 
-    @abstractmethod
     def __validate_token(self) -> bool:
         if not self.access:
             raise Exception("Cannot access the API, token may be invalid.")

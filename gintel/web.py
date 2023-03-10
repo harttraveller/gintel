@@ -10,6 +10,17 @@ class Endpoint(ABC):
     def __init__(self, name: str) -> None:
         self.name = name
 
+    def __init_token(self, token: str | None = None) -> None:
+        if token is None:
+            if "mapbox" in token_cache.defined:
+                self.token = token_cache.get("mapbox")
+            else:
+                raise Exception(
+                    "Mapbox token not passed, and not available in local cache."
+                )
+        else:
+            self.token = token
+
     @staticmethod
     @abstractmethod
     def validate(token: str) -> bool:
@@ -21,15 +32,7 @@ class Mapbox(Endpoint):
         self.__init_token(token)
 
     def __init_token(self, token: str | None = None) -> None:
-        if token is None:
-            if "mapbox" in token_cache.defined:
-                self.token = token_cache.get("mapbox")
-            else:
-                raise Exception(
-                    "Mapbox token not passed, and not available in local cache."
-                )
-        else:
-            self.token = token
+        pass
 
     @staticmethod
     def validate(token: str) -> bool:

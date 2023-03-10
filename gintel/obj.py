@@ -79,6 +79,14 @@ class PositionBuilder:
         if not any([tiles_defined, coordinates_defined]):
             raise Exception("Either the tiles, or coordinates must be defined.")
 
+    @staticmethod
+    def coordinates_to_tiles(latitude: float, longitude: float, zoom: int) -> tuple[int]:
+        lat_rad = math.radians(latitude)
+        n = 2.0**zoom
+        tile_x = int((longitude + 180.0) / 360.0 * n)
+        tile_y = int((1.0 - math.asinh(math.tan(lat_rad)) / math.pi) / 2.0 * n)
+        return (tile_x, tile_y)
+
 
 # %%
 @dataclass
@@ -96,13 +104,6 @@ class Position:
     @property
     def coordinates(self) -> tuple[float]:
         return (self.latitude, self.longitude)
-
-    def deg2num(lat_deg, lon_deg, zoom):
-        lat_rad = math.radians(lat_deg)
-        n = 2.0**zoom
-        xtile = int((lon_deg + 180.0) / 360.0 * n)
-        ytile = int((1.0 - math.asinh(math.tan(lat_rad)) / math.pi) / 2.0 * n)
-        return (xtile, ytile)
 
     def save():
         pass

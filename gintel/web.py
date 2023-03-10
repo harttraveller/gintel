@@ -106,6 +106,9 @@ class Interface:
         if len(invalid_services):
             raise Exception(f"Invalid service name passed: {invalid_services}")
 
+    def query(self, **kwargs) -> Any:
+        pass
+
 
 # %%
 interface = Interface(mapbox="asdf")

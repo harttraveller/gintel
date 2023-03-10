@@ -149,7 +149,8 @@ class Data:
 class Gintel:
     position: Position
 
-    def make(**kwargs) -> Gintel:
+    @staticmethod
+    def make(position: Position) -> Gintel:
         pass
 
     def visualize(**kwargs) -> Gintel:
